@@ -5,29 +5,17 @@ function [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters
 
 % Initialize some useful values
 m = length(y); % number of training examples
+n = length(theta);
 J_history = zeros(num_iters, 1);
 
 for iter = 1:num_iters
+    h = X*theta;
+    thetaTemp = zeros(n, 1);
+    for i = 1:n
+      thetaTemp(i) = theta(i) - alpha/m*sum((h - y).*X(:,i));
+    end
 
-    % ====================== YOUR CODE HERE ======================
-    % Instructions: Perform a single gradient step on the parameter vector
-    %               theta. 
-    %
-    % Hint: While debugging, it can be useful to print out the values
-    %       of the cost function (computeCostMulti) and gradient here.
-    %
-
-
-
-
-
-
-
-
-
-
-
-    % ============================================================
+    theta = thetaTemp;
 
     % Save the cost J in every iteration    
     J_history(iter) = computeCostMulti(X, y, theta);
